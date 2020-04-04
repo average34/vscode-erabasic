@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 import {
     CancellationToken, CompletionContext, CompletionItem, CompletionItemProvider, Definition, DefinitionProvider, Disposable,
     DocumentSelector, DocumentSymbolProvider, ExtensionContext, Position, SymbolInformation, TextDocument, Uri, WorkspaceSymbolProvider,
+    HoverProvider, Hover,
 } from "vscode";
 
 import { BuiltinComplationItems } from "./completion";
@@ -17,6 +18,7 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(selector, new EraBasicDefinitionProvider(provider)));
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(selector, new EraBasicDocumentSymbolProvider()));
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new EraBasicWorkspaceSymbolProvider(provider)));
+    context.subscriptions.push(vscode.languages.registerHoverProvider(selector, new EraBasicHoverProvider()));
     context.subscriptions.push(provider);
 }
 
@@ -58,5 +60,15 @@ class EraBasicWorkspaceSymbolProvider implements WorkspaceSymbolProvider {
 
     public provideWorkspaceSymbols(query: string, token: CancellationToken): Promise<SymbolInformation[]> {
         return this.repo.sync().then(() => Array.from(this.repo.find(query)));
+    }
+}
+
+class EraBasicHoverProvider implements HoverProvider {
+    public provideHover(document: TextDocument, position: Position, token: CancellationToken) {
+        let wordRange = document.getWordRangeAtPosition(position, /[a-zA-Z0-9_]+/);
+        if (wordRange === undefined) return Promise.reject("no word here");
+
+        let currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
+        return Promise.resolve(new Hover(currentWord));
     }
 }
