@@ -2119,30 +2119,37 @@ export const BuiltinComplationItems: CompletionItem[] = [
     {
         label: "DA",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "DB",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "DC",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "DD",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "DE",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "TA",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "TB",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIM、#DIMSを使用して用途に応じた名前を付けることを検討してください。",
     },
     {
         label: "ITEMPRICE",
@@ -2355,6 +2362,7 @@ export const BuiltinComplationItems: CompletionItem[] = [
     {
         label: "LOCAL",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIMの使用を検討してください。",
     },
     {
         label: "ARG",
@@ -2363,6 +2371,7 @@ export const BuiltinComplationItems: CompletionItem[] = [
     {
         label: "LOCALS",
         kind: Variable,
+        detail: "※この変数は時代遅れです。代わりに#DIMSの使用を検討してください。",
     },
     {
         label: "ARGS",
